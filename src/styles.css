@@ -24,3 +24,38 @@ body {
   width: 90%;
   margin: 5%;
 }
+.logo {
+  height: 50px !important;
+  margin: 0 40%;
+}
+#nav-bar .form-inline {
+  margin-right: 60px;
+}
+.paginator-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.error {
+  display: flex;
+  justify-content: center;
+  margin: 6em 0;
+  color: wheat;
+}
+@media only screen and (max-width: 513px) {
+  img.logo {
+    margin: 0;
+  }
+  #nav-bar .mr-auto {
+    margin: 0 !important;
+  }
+  .navbar {
+    justify-content: center;
+  }
+  #nav-bar .form-inline {
+    flex-flow: row nowrap;
+    margin-right: 0;
+  }
+  #nav-bar .form-inline button {
+    margin-left: 10px;
+  }
+}

@@ -12,7 +12,7 @@ export default function App() {
   const [episodes, setEpisodes] = useState([]);
   const [pages, setPage] = useState(1);
   const [activePage, setActivePage] = useState("");
-
+  const [error, setError] = useState(false);
   const getEpisodes = (params = {}) => {
     const { name, page } = params;
     if (name) {
@@ -21,13 +21,16 @@ export default function App() {
           `https://rickandmortyapi.com/api/episode?name=${name}&page=${page}`
         )
         .then(res => {
+          setError(false);
           setEpisodes(res.data.results);
           setPage(res.data.info.pages);
-        });
+        })
+        .catch(err => setError(true));
     } else {
       return axios
         .get(`https://rickandmortyapi.com/api/episode?page=${page}`)
         .then(res => {
+          setError(false);
           setEpisodes(res.data.results);
           setPage(res.data.info.pages);
         });
@@ -41,18 +44,23 @@ export default function App() {
   return (
     <React.Fragment>
       <Header onchange={getEpisodes} />
-      <div className="card-container">
-        {episodes.map(episode => {
-          return (
-            <ItemCard
-              name={episode.name}
-              episode={episode.episode}
-              date={episode.air_date}
-              id={episode.id}
-            />
-          );
-        })}
-      </div>
+      {!error ? (
+        <div className="card-container">
+          {episodes.map(episode => {
+            return (
+              <ItemCard
+                key={episode.id}
+                name={episode.name}
+                episode={episode.episode}
+                date={episode.air_date}
+                id={episode.id}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <h1 className="error">No Results Found</h1>
+      )}
       <Pagenator
         selectPage={page => {
           setActivePage(page);
