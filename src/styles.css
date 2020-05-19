@@ -1,0 +1,26 @@
+body {
+  background: #343a40 !important;
+}
+.card {
+  display: inline-block;
+}
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 2em;
+}
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 7px -7px 14px #0d0e10, -7px 7px 14px #333842;
+}
+.card:active {
+  box-shadow: inset 7px -7px 14px #0d0e10, inset -7px 7px 14px #333842;
+}
+.card-img-top {
+  border-radius: 10px;
+  width: 90%;
+  margin: 5%;
+}
